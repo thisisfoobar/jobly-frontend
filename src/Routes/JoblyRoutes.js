@@ -1,11 +1,11 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import HomePage from "./Routes/HomePage";
-import CompanyDetails from "./Routes/CompanyDetails";
-import Companies from "./Routes/Companies";
-import Jobs from "./Routes/Jobs";
-import Login from "./Routes/Login";
-import SignUpForm from "./Routes/SignUpForm";
-import UserProfile from "./Routes/UserProfile";
+import HomePage from "./HomePage";
+import CompanyDetails from "./CompanyDetails";
+import Companies from "./Companies";
+import Jobs from "./Jobs";
+import Login from "./Login";
+import SignUpForm from "./SignUpForm";
+import UserProfile from "./UserProfile";
 
 function JoblyRoutes() {
   return (
@@ -17,7 +17,7 @@ function JoblyRoutes() {
       <Route path='/companies' element={<Companies />} />
 
       /** company details */
-      <Route path='/companies/:company' element={<CompanyDetails />} />
+      <Route path='/companies/:handle' element={<CompanyDetails />} />
 
       /** list of all jobs */
       <Route path='/jobs' element={<Jobs />} />

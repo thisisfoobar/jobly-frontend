@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import JoblyRoutes from './JoblyRoutes';
+import JoblyRoutes from './Routes/JoblyRoutes';
 import NavBar from './NavBar';
 
 function App() {
