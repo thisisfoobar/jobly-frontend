@@ -2,30 +2,58 @@ import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 import { Navbar, Nav, NavItem } from "reactstrap";
 
-function NavBar() {
+function NavBar({ currentUser, setToken, setUsername, setCurrentUser }) {
+  const handleLogout = () => {
+    setToken(null);
+    setUsername(null)
+    setCurrentUser(null);
+  };
   return (
-    <div>
-      <Navbar expand='md'>
-        <NavLink exact to='/jobly' className='navbar-brand'>
-          Jobly
-        </NavLink>
-
-        <Nav className='ml-auto' navbar>
+    <Navbar color="light" light expand="md">
+    <NavLink to="/" className="navbar-brand">
+      Jobly
+    </NavLink>
+    <Nav className="ml-auto" navbar>
+      {currentUser ? (
+        <>
           <NavItem>
-            <NavLink to='/companies'>Companies</NavLink>
+            <NavLink to="/companies" className="nav-link">
+              Companies
+            </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to='/jobs'>Jobs</NavLink>
+            <NavLink to="/jobs" className="nav-link">
+              Jobs
+            </NavLink>
           </NavItem>
-
-          {/* Validate authentication to display: profile, logout, login or signup */}
           <NavItem>
-            <NavLink to='/profile'>Profile</NavLink>
+            <NavLink to="/profile" className="nav-link">
+              Profile
+            </NavLink>
           </NavItem>
-        </Nav>
-      </Navbar>
-    </div>
-  );
+          <NavItem>
+            <NavLink to="/" className="nav-link" onClick={handleLogout}>
+              Logout
+            </NavLink>
+          </NavItem>
+        </>
+      ) : (
+        <>
+          <NavItem>
+            <NavLink to="/login" className="nav-link">
+              Login
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/signup" className="nav-link">
+              Sign Up
+            </NavLink>
+          </NavItem>
+        </>
+      )}
+    </Nav>
+  </Navbar>
+);
 }
 
 export default NavBar;

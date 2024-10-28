@@ -1,40 +1,56 @@
+import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./HomePage";
-import CompanyDetails from "./CompanyDetails";
-import Companies from "./Companies";
-import Jobs from "./Jobs";
-import Login from "./Login";
-import SignUpForm from "./SignUpForm";
+import CompaniesPage from "./Companies";
+import JobsPage from "./Jobs";
+import CompanyDetailsPage from "./CompanyDetails";
+import LogInForm from "../Forms/LogInForm";
+import SignUpForm from "../Forms/SignUpForm";
+import ProtectedRoute from "./ProtectedRoute";
 import UserProfile from "./UserProfile";
 
-function JoblyRoutes() {
+function JoblyRoutes({ setToken, currentUser, setUsername }) {
   return (
     <Routes>
-      /** Homepage */
-      <Route path='/jobly' element={<HomePage />} />
-
-      /** list of all companies */
-      <Route path='/companies' element={<Companies />} />
-
-      /** company details */
-      <Route path='/companies/:handle' element={<CompanyDetails />} />
-
-      /** list of all jobs */
-      <Route path='/jobs' element={<Jobs />} />
-
-      /** user login page */
-      <Route path='/login' element={<Login />} />
-
-      /** user signup form*/
-      <Route path='/signup' element={<SignUpForm />} />
-
-      /** user profile page */
-      <Route path='/profile' element={<UserProfile />} />
-
-      /** Catch all route */
-      <Route path='*' element={<Navigate to='/jobly' />} />
+      <Route path='/' element={<HomePage />} />
+      <Route
+        path='/login'
+        element={<LogInForm setToken={setToken} setUsername={setUsername} />}
+      />
+      <Route path='/signup' element={<SignUpForm setToken={setToken} />} />
+      <Route
+        path='/companies'
+        element={
+          <ProtectedRoute
+            currentUser={currentUser}
+            element={<CompaniesPage />}
+          />
+        }
+      />
+      <Route
+        path='/jobs'
+        element={
+          <ProtectedRoute currentUser={currentUser} element={<JobsPage />} />
+        }
+      />
+      <Route
+        path='/companies/:handle'
+        element={
+          <ProtectedRoute
+            currentUser={currentUser}
+            element={<CompanyDetailsPage />}
+          />
+        }
+      />
+      <Route
+        path='/profile'
+        element={
+          <ProtectedRoute currentUser={currentUser} element={<UserProfile />} />
+        }
+      />
+      <Route path='*' element={<Navigate to='/' />} />
     </Routes>
   );
-};
+}
 
 export default JoblyRoutes;
