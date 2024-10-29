@@ -9,7 +9,7 @@ import SignUpForm from "../Forms/SignUpForm";
 import ProtectedRoute from "./ProtectedRoute";
 import UserProfile from "./UserProfile";
 
-function JoblyRoutes({ setToken, currentUser, setUsername }) {
+function JoblyRoutes({ setToken, currentUser, setUsername, setCurrentUser }) {
   return (
     <Routes>
       <Route path='/' element={<HomePage />} />
@@ -45,7 +45,7 @@ function JoblyRoutes({ setToken, currentUser, setUsername }) {
       <Route
         path='/profile'
         element={
-          <ProtectedRoute currentUser={currentUser} element={<UserProfile />} />
+          <ProtectedRoute currentUser={currentUser} element={<UserProfile currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
         }
       />
       <Route path='*' element={<Navigate to='/' />} />

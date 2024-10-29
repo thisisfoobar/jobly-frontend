@@ -38,7 +38,7 @@ function App() {
           setCurrentUser={setCurrentUser}
           setToken={setToken}
         />
-        <JoblyRoutes setToken={setToken} setUsername={setUsername} currentUser={currentUser} />
+        <JoblyRoutes setToken={setToken} setUsername={setUsername} currentUser={currentUser} setCurrentUser={setCurrentUser} />
       </BrowserRouter>
     </div>
   );
