@@ -1,6 +1,24 @@
+import { useState, useEffect } from "react";
 import { Button, Card, CardBody, CardText, CardTitle } from "reactstrap";
+import JoblyApi from "./api";
 
-function JoblyInfoCard({ title, description, job=false }) {
+function JoblyInfoCard({ title, description, job=false, currentUser, jobId }) {
+  const [hasApplied, setHasApplied] = useState(false);
+  const applyToJob = async () => {
+    try {
+      await JoblyApi.applyToJob(currentUser.username, jobId);
+      setHasApplied(true);
+    } catch (error) {
+      console.error("Error applying to job:", error);
+    }
+  }
+  useEffect(() => {
+    if (currentUser.applications.includes(jobId)) {
+      setHasApplied(true);
+    }
+  }, [currentUser.applications, jobId])
+
+
   return (
     <>
       <Card>
@@ -10,8 +28,8 @@ function JoblyInfoCard({ title, description, job=false }) {
           </CardTitle>
           <CardText className='font-italic'>{description}</CardText>
         </CardBody>
-        {job && 
-        <Button>Apply</Button>}
+        {job && !hasApplied && 
+        <Button onClick={applyToJob}>Apply</Button>}
       </Card>
     </>
   );

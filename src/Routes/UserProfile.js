@@ -1,7 +1,9 @@
 import { useState } from "react";
 import JoblyApi from "../api";
+import JobList from "../JobList";
 
 function UserProfile({ currentUser, setCurrentUser }) {
+  console.log(currentUser)
   const [formData, setFormData] = useState({
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,

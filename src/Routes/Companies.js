@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CompanyList from "../CompanyList";
 import JoblyApi from "../api";
-function Companies() {
+function Companies({currentUser}) {
   const [companies, setCompanies] = useState([]);
   const fetchCompanies = async () => {
     try {
@@ -19,7 +19,7 @@ function Companies() {
   return (
     <>
       <h1>COMPANIES</h1>
-      <CompanyList companies={companies}></CompanyList>
+      <CompanyList companies={companies} currentUser={currentUser}></CompanyList>
     </>
   )
 }

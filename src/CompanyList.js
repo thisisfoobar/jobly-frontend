@@ -5,13 +5,13 @@ import {
 } from "reactstrap";
 import CompanyCard from "./JoblyInfoCard";
 
-function CompanyList({companies}) {
+function CompanyList({companies, currentUser}) {
   return(
     <>
     <ListGroup>
       {companies.map(company => (
         <Link to={`/companies/${company.handle}`} key={company.handle}>
-          <ListGroupItem><CompanyCard title={company.name} description={company.description}></CompanyCard></ListGroupItem>
+          <ListGroupItem><CompanyCard title={company.name} description={company.description} currentUser={currentUser}></CompanyCard></ListGroupItem>
         </Link>
       ))}
     </ListGroup>

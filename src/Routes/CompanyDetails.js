@@ -5,7 +5,7 @@ import { Button, Card, CardBody, CardText, CardTitle, ListGroup } from "reactstr
 import CompanyCard from "../JoblyInfoCard"
 import JobCard from "../JoblyInfoCard"
 
-function CompanyDetails() {
+function CompanyDetails({currentUser}) {
   const { handle } = useParams();
 
   const [company, setCompany] = useState({ jobs: [] });
@@ -25,11 +25,11 @@ function CompanyDetails() {
 
   return (
     <>
-    <CompanyCard title={company.name} description={company.description} ></CompanyCard>
+    <CompanyCard title={company.name} description={company.description} currentUser={currentUser} ></CompanyCard>
     
     <ListGroup>
       {company.jobs.map(job => (
-        <JobCard key={job.id} title={job.title} description={`Salary: ${job.salary}, Equity: ${job.equity}`} job={true} ></JobCard>
+        <JobCard currentUser={currentUser} key={job.id} title={job.title} description={`Salary: ${job.salary}, Equity: ${job.equity}`} job={true} jobId={job.id} ></JobCard>
       ))}
     </ListGroup>
     </>

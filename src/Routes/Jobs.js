@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import JobList from "../JobList";
 import JoblyApi from "../api";
 
-function Jobs() {
+function Jobs({currentUser}) {
   const [jobs, setJobs] = useState([]);
   const fetchJobs = async () => {
     try {
@@ -18,8 +18,8 @@ function Jobs() {
   }, [])
   return(
     <>
-      <h1>JOBS PLACEHOLDER</h1>
-      <JobList jobs={jobs}></JobList>
+      <h1>JOBS</h1>
+      <JobList jobs={jobs} currentUser={currentUser}></JobList>
     </>
   )
 }
